@@ -1,0 +1,1 @@
+{ "name": "wsc-sportshouse-channel2-site", "private": true, "type": "module", "scripts": { "build": "node wsc-generate.js" } }
