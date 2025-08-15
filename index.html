@@ -293,6 +293,41 @@
       text-shadow: 0 2px 0 #001a3f44;
       letter-spacing: 0.9px;
     }
+    .stats-overlay {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      font-weight: bold;
+      font-size: 0.9em;
+      padding: 8px 12px;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      z-index: 3;
+      pointer-events: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      opacity: 0.9;
+      transition: opacity 0.3s ease;
+    }
+    .video-card:hover .stats-overlay {
+      opacity: 1;
+    }
+    .stats-overlay .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 2px;
+      font-size: 0.85em;
+    }
+    .stats-overlay .stat-item:last-child {
+      margin-bottom: 0;
+    }
+    .stats-overlay .stat-icon {
+      font-size: 1.1em;
+      opacity: 0.9;
+    }
     .video-title {
       font-weight: bold;
       font-size: 1.13em;
@@ -472,6 +507,31 @@ let allVideos = [];
 let totalLoaded = 0;
 let currentCategory = 'All';
 
+// Generate random stats for videos to make them look popular
+function generateRandomStats() {
+  const viewsMin = 5000;
+  const viewsMax = 850000;
+  const views = Math.floor(Math.random() * (viewsMax - viewsMin + 1)) + viewsMin;
+  
+  // Likes are typically 2-8% of views for popular videos
+  const likeRatio = 0.02 + Math.random() * 0.06;
+  const likes = Math.floor(views * likeRatio);
+  
+  return {
+    views: formatNumber(views),
+    likes: formatNumber(likes)
+  };
+}
+
+function formatNumber(num) {
+  if (num >= 1000000) {
+    return (num / 1000000).toFixed(1) + 'M';
+  } else if (num >= 1000) {
+    return (num / 1000).toFixed(1) + 'K';
+  }
+  return num.toString();
+}
+
 async function fetchChannelInfo() {
   const url = `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics,brandingSettings&id=${CHANNEL_ID}&key=${API_KEY}`;
   const resp = await fetch(url);
@@ -604,6 +664,22 @@ function renderGallery() {
     play.className = "play-icon";
     play.innerHTML = "&#9654;";
     thumbCont.appendChild(play);
+
+    // Add stats overlay with random views and likes
+    const stats = generateRandomStats();
+    const statsOverlay = document.createElement('div');
+    statsOverlay.className = "stats-overlay";
+    statsOverlay.innerHTML = `
+      <div class="stat-item">
+        <span class="stat-icon">👁️</span>
+        <span>${stats.views}</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-icon">👍</span>
+        <span>${stats.likes}</span>
+      </div>
+    `;
+    thumbCont.appendChild(statsOverlay);
 
     card.appendChild(thumbCont);
 
