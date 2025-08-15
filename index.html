@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sports House TV – Pro Sports News Video Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Watch the latest 500 sports videos, highlights, and live streams from Sports House TV. Powered by YouTube and pro-level design!" />
+  <meta property="og:title" content="Sports House TV – Pro Sports News Video Hub" />
+  <meta property="og:description" content="Watch the latest 500 sports videos, highlights, and live streams from Sports House TV. Powered by YouTube and pro-level design!" />
+  <meta property="og:image" content="logo-main.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="logo-main.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg: #0a1627;
+      --main-fg: #fff;
+      --accent: #ffbf00;
+      --accent2: #e30613;
+      --blue: #0097f6;
+      --radius: 20px;
+      --shadow: 0 6px 32px 0 #001a3f66;
+      --transition: .16s cubic-bezier(.45,1.7,.55,1.07);
+    }
+    html, body {margin:0;padding:0;}
+    body {
+      background: linear-gradient(135deg, #0a1627 0%, #122c54 100%);
+      color: var(--main-fg);
+      font-family: 'Roboto', Arial, sans-serif;
+      min-height: 100vh;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #06101f;
+      padding: 0 24px;
+      height: 82px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .logo img {
+      height: 60px;
+      width: 60px;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 2px 12px #001a3f30;
+      border: 2.5px solid var(--accent);
+      object-fit: cover;
+    }
+    .site-title {
+      font-family: 'Russo One', Arial, sans-serif;
+      font-size: 2em;
+      color: var(--accent);
+      letter-spacing: 1.2px;
+      text-shadow: 0 2px 0 #001a3f44;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    nav a {
+      color: #f6f6f6;
+      text-decoration: none;
+      font-size: 1.1em;
+      font-weight: bold;
+      padding: 6px 18px;
+      border-radius: 999px;
+      transition: background .14s;
+    }
+    nav a:hover, nav a.active {
+      background: var(--accent2);
+      color: #fff;
+    }
+    .ticker {
+      width: 100%;
+      background: #002859;
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 1.09em;
+      letter-spacing: 1px;
+      overflow: hidden;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1.5px solid var(--accent2);
+      position: relative;
+    }
+    .ticker span {
+      display: inline-block;
+      white-space: nowrap;
+      animation: ticker 42s linear infinite;
+    }
+    @keyframes ticker {
+      0% { transform: translateX(100%);}
+      100% { transform: translateX(-100%);}
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #122c54 70%, #e30613 100%);
+      margin: 0 0 32px 0;
+      padding: 38px 12px 24px 12px;
+      color: #fff;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      min-height: 260px;
+    }
+    .hero-img {
+      width: 220px;
+      max-width: 45vw;
+      min-width: 140px;
+      margin-right: 24px;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 40px #001a3f80;
+      background: #fff;
+      border: 3px solid var(--accent);
+    }
+    .hero-content {
+      flex: 1;
+      min-width: 260px;
+    }
+    .hero-title {
+      font-family: 'Russo One', Arial, sans-serif;
+      font-size: 2.4em;
+      margin: 0 0 14px 0;
+      color: var(--accent);
+      text-shadow: 0 1.5px 0 #001a3f44;
+    }
+    .hero-desc {
+      font-size: 1.15em;
+      color: #f2f2f2;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      max-width: 540px;
+      opacity: 0.88;
+    }
+    .channel-badges {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .badge {
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      color: #fff;
+      font-weight: bold;
+      font-size: 1em;
+      padding: 7px 19px;
+      border-radius: 999px;
+      box-shadow: 0 2px 8px #001a3f44;
+      border: 1.5px solid #fff4;
+      letter-spacing: 0.7px;
+      display: inline-block;
+    }
+    .subscribe-btn {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      font-size: 1.13em;
+      padding: 10px 34px;
+      font-family: 'Russo One', Arial, sans-serif;
+      box-shadow: 0 2px 8px #0097f666;
+      cursor: pointer;
+      margin-left: 12px;
+      margin-bottom: 8px;
+      transition: background 0.15s, transform 0.15s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .subscribe-btn:hover {
+      background: var(--accent2);
+      transform: scale(1.06);
+    }
+
+    /* Category Filter */
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin: 0 0 24px 0;
+      padding: 0 12px;
+    }
+    .category-filter {
+      background: #fff2;
+      color: #fff;
+      border: 1.5px solid var(--accent2);
+      border-radius: 999px;
+      padding: 8px 22px;
+      font-size: 1em;
+      font-weight: bold;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #001a3f22;
+      transition: background .13s, color .13s;
+    }
+    .category-filter.active, .category-filter:hover {
+      background: var(--accent2);
+      color: #fff;
+    }
+
+    /* Video Grid */
+    #gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 35px;
+      padding: 20px 32px 38px 32px;
+      max-width: 1900px;
+      margin: 0 auto;
+    }
+    .video-card {
+      background: #13213a;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      opacity: 0;
+      animation: fadeIn 0.8s var(--transition) forwards;
+    }
+    .video-card:hover {
+      transform: translateY(-12px) scale(1.034);
+      box-shadow: 0 12px 48px #0097f644, 0 1.5px 20px #e3061344;
+      z-index: 2;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.97);}
+      to { opacity: 1; transform: scale(1);}
+    }
+    .video-thumb-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: #111;
+    }
+    .video-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: filter 0.2s;
+    }
+    .video-card:hover .video-thumb {
+      filter: brightness(0.8) blur(1.5px);
+    }
+    .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      font-size: 3em;
+      color: var(--accent);
+      opacity: 0.86;
+      pointer-events: none;
+      transition: color 0.14s;
+      filter: drop-shadow(0 0 8px #fff7);
+    }
+    .video-card:hover .play-icon { color: #fff; }
+    .live-ribbon {
+      position: absolute;
+      top: 12px; left: -18px;
+      background: var(--accent2);
+      color: #fff;
+      font-weight: bold;
+      font-size: 1em;
+      padding: 7px 28px;
+      border-radius: 8px 999px 999px 8px;
+      box-shadow: 0 2px 8px #e3061344;
+      transform: rotate(-11deg);
+      z-index: 3;
+      text-shadow: 0 2px 0 #001a3f44;
+      letter-spacing: 0.9px;
+    }
+    .video-title {
+      font-weight: bold;
+      font-size: 1.13em;
+      margin: 16px 18px 8px 18px;
+      color: #fff;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .video-date {
+      color: #b8c6d7;
+      font-size: 0.98em;
+      margin: 0 18px 15px 18px;
+    }
+    .share-bar {
+      display: flex;
+      gap: 10px;
+      margin: 0 18px 14px 18px;
+      align-items: center;
+    }
+    .share-btn {
+      background: #fff4;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.19em;
+      transition: background 0.14s, color 0.14s;
+    }
+    .share-btn:hover { background: var(--blue); color: #fff; }
+    /* Load More Button */
+    .load-more {
+      display: block;
+      background: var(--accent);
+      color: #18243e;
+      border: none;
+      border-radius: 999px;
+      font-size: 1.15em;
+      padding: 19px 68px;
+      margin: 36px auto 44px auto;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s;
+      font-family: 'Russo One', Arial, sans-serif;
+      font-weight: bold;
+      box-shadow: 0 2px 18px #ffbf0045;
+    }
+    .load-more:hover {
+      background: var(--accent2);
+      color: #fff;
+    }
+    .load-status {
+      text-align: center;
+      margin: 29px;
+      color: #b2c7d8;
+      letter-spacing: 0.2em;
+      font-size: 1.17em;
+    }
+    /* Modal */
+    .modal-bg {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: #000b;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: modalFadeIn 0.25s;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .modal-content {
+      background: #222;
+      border-radius: var(--radius);
+      max-width: 900px;
+      width: 95vw;
+      padding: 0;
+      box-shadow: 0 8px 40px #000e;
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 0.3s;
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: #222;
+      color: #fff;
+      border: none;
+      font-size: 2.2em;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      z-index: 2;
+      opacity: 0.77;
+      transition: opacity 0.2s;
+    }
+    .modal-close:hover { opacity: 1; background: #e30613; }
+    .modal-iframe {
+      width: 100%; aspect-ratio: 16/9; border: none; display: block; background: #111;
+    }
+    .modal-title {
+      padding: 12px 22px 16px 22px;
+      font-size: 1.18em;
+      color: #fff;
+      font-weight: bold;
+      background: #16171b;
+      border-bottom: 1px solid #232323;
+    }
+
+    @media (max-width: 760px) {
+      header {flex-direction: column; height: auto; gap: 4px;}
+      .hero {flex-direction: column; gap: 14px;}
+      .hero-img {margin: 0 0 12px 0; max-width: 85vw;}
+      .hero-content {text-align: center;}
+      #gallery {gap: 12px; padding: 3px 2px 8px 2px;}
+      .video-title {margin: 10px 9px 7px 9px; font-size: 1em;}
+      .video-date, .share-bar {margin: 0 9px 8px 9px; font-size: 0.95em;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo-main.png" alt="Sports House Logo" />
+      <div class="site-title">Sports House TV</div>
+    </div>
+    <nav>
+      <a href="#" class="active">Home</a>
+      <a href="https://www.youtube.com/channel/UCP2lwcWmDw6BFDHvQR6EWbQ" target="_blank">YouTube</a>
+      <a href="#gallery">Videos</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <div class="ticker" id="ticker"><span>Latest videos loading...</span></div>
+
+  <section class="hero">
+    <img class="hero-img" src="logo-featured.png" alt="Sports House Hero" />
+    <div class="hero-content">
+      <div class="hero-title" id="channelTitle">Sports House TV</div>
+      <div class="hero-desc" id="channelDesc">The latest action, highlights, and live streams from the world of sports! Basketball, Football, Combat, Baseball & more. Join the Sports House community and never miss a moment of the action.</div>
+      <div class="channel-badges" id="channelBadges"></div>
+      <a class="subscribe-btn" id="subscribeBtn" href="#" target="_blank" rel="noopener">Subscribe</a>
+    </div>
+  </section>
+
+  <div class="categories" id="categories"></div>
+
+  <div id="gallery"></div>
+  <div class="load-status" id="loadStatus">Loading videos...</div>
+  <button class="load-more" id="loadMoreBtn" style="display:none;">Load More Videos</button>
+
+  <!-- Video Modal -->
+  <div id="modalBg" class="modal-bg" style="display:none;">
+    <div class="modal-content">
+      <button class="modal-close" id="modalCloseBtn">&times;</button>
+      <div class="modal-title" id="modalTitle">Video Title</div>
+      <iframe id="modalIframe" class="modal-iframe" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </div>
+
+<script>
+const API_KEY = "AIzaSyBD-eWEz7em0Fl6O9dU3PuyLd1ZjMOgG_I";
+const CHANNEL_ID = "UCP2lwcWmDw6BFDHvQR6EWbQ";
+const MAX_RESULTS = 500;
+const VIDEOS_PER_PAGE = 50;
+
+let nextPageToken = "";
+let videos = [];
+let allVideos = [];
+let totalLoaded = 0;
+let currentCategory = 'All';
+
+async function fetchChannelInfo() {
+  const url = `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics,brandingSettings&id=${CHANNEL_ID}&key=${API_KEY}`;
+  const resp = await fetch(url);
+  const data = await resp.json();
+  if (!data.items || !data.items[0]) return;
+  const channel = data.items[0];
+  document.getElementById('channelTitle').textContent = channel.snippet.title;
+  document.getElementById('channelDesc').textContent = channel.snippet.description || "The latest action, highlights, and live streams from the world of sports!";
+  document.getElementById('subscribeBtn').href = `https://www.youtube.com/channel/${CHANNEL_ID}?sub_confirmation=1`;
+  document.getElementById('channelBadges').innerHTML =
+    `<span class="badge">${parseInt(channel.statistics.subscriberCount).toLocaleString()} Subscribers</span>
+     <span class="badge">${parseInt(channel.statistics.videoCount).toLocaleString()} Videos</span>
+     <span class="badge">Est. ${channel.snippet.publishedAt.slice(0,4)}</span>`;
+}
+
+// --- Fetch Videos
+async function fetchVideos(pageToken = "") {
+  const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=${VIDEOS_PER_PAGE}&type=video${pageToken ? "&pageToken=" + pageToken : ""}`;
+  const resp = await fetch(url);
+  if (!resp.ok) throw new Error("Failed to fetch YouTube videos");
+  return resp.json();
+}
+
+async function loadMoreVideos() {
+  document.getElementById('loadMoreBtn').disabled = true;
+  document.getElementById('loadStatus').textContent = "Loading videos...";
+  try {
+    const data = await fetchVideos(nextPageToken);
+    nextPageToken = data.nextPageToken || "";
+    const items = data.items || [];
+    items.forEach(item => {
+      allVideos.push({
+        id: item.id.videoId,
+        title: item.snippet.title,
+        thumb: item.snippet.thumbnails.high?.url || item.snippet.thumbnails.medium.url,
+        date: (new Date(item.snippet.publishedAt)).toLocaleDateString(),
+        desc: item.snippet.description,
+        live: item.snippet.liveBroadcastContent === "live"
+      });
+    });
+    totalLoaded += items.length;
+    videos = filterVideosByCategory(currentCategory);
+    renderGallery();
+    renderCategories();
+    updateTicker();
+    if (!nextPageToken || totalLoaded >= MAX_RESULTS) {
+      document.getElementById('loadMoreBtn').style.display = 'none';
+      document.getElementById('loadStatus').textContent = "All videos loaded.";
+    } else {
+      document.getElementById('loadMoreBtn').disabled = false;
+      document.getElementById('loadStatus').textContent = `Showing ${totalLoaded} of up to 500 latest videos.`;
+    }
+  } catch (err) {
+    document.getElementById('loadStatus').textContent = "Error loading videos: " + err.message;
+  }
+}
+
+// --- Categories from video titles/descriptions
+function extractCategories() {
+  const keywords = ["Football","Basketball","Baseball","Soccer","Combat","Boxing","MMA","UFC","Highlights","Livestream","Game","Playoff","News"];
+  const cats = new Set();
+  allVideos.forEach(v => {
+    keywords.forEach(k => {
+      if (v.title.toLowerCase().includes(k.toLowerCase()) || v.desc.toLowerCase().includes(k.toLowerCase())) {
+        cats.add(k);
+      }
+    });
+  });
+  return ["All", ...Array.from(cats)];
+}
+function filterVideosByCategory(cat) {
+  if (cat === "All") return allVideos.slice();
+  return allVideos.filter(v =>
+    v.title.toLowerCase().includes(cat.toLowerCase()) ||
+    v.desc.toLowerCase().includes(cat.toLowerCase())
+  );
+}
+function renderCategories() {
+  const cats = extractCategories();
+  const catsDiv = document.getElementById('categories');
+  catsDiv.innerHTML = "";
+  cats.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = "category-filter" + (cat === currentCategory ? " active" : "");
+    btn.textContent = cat;
+    btn.onclick = () => {
+      currentCategory = cat;
+      videos = filterVideosByCategory(cat);
+      renderGallery();
+      renderCategories();
+    };
+    catsDiv.appendChild(btn);
+  });
+}
+
+// --- Ticker (latest video headlines)
+function updateTicker() {
+  if (!allVideos.length) return;
+  const latestTitles = allVideos.slice(0, 12).map(v => v.title);
+  document.getElementById('ticker').innerHTML = `<span>Latest: ${latestTitles.join(" | ")}</span>`;
+}
+
+// --- Render Gallery
+function renderGallery() {
+  const gallery = document.getElementById('gallery');
+  gallery.innerHTML = "";
+  videos.slice(0, MAX_RESULTS).forEach((video, idx) => {
+    const card = document.createElement('div');
+    card.className = 'video-card';
+    card.style.animationDelay = (idx * 0.013) + "s";
+    card.onclick = () => openModal(video);
+
+    const thumbCont = document.createElement('div');
+    thumbCont.className = "video-thumb-container";
+
+    const thumb = document.createElement('img');
+    thumb.src = video.thumb;
+    thumb.alt = video.title;
+    thumb.className = "video-thumb";
+    thumbCont.appendChild(thumb);
+
+    if (video.live) {
+      const live = document.createElement('div');
+      live.className = "live-ribbon";
+      live.textContent = "LIVE NOW";
+      thumbCont.appendChild(live);
+    }
+
+    const play = document.createElement('span');
+    play.className = "play-icon";
+    play.innerHTML = "&#9654;";
+    thumbCont.appendChild(play);
+
+    card.appendChild(thumbCont);
+
+    const vTitle = document.createElement('div');
+    vTitle.className = "video-title";
+    vTitle.textContent = video.title;
+    card.appendChild(vTitle);
+
+    const vDate = document.createElement('div');
+    vDate.className = "video-date";
+    vDate.textContent = video.date;
+    card.appendChild(vDate);
+
+    // Share bar
+    const share = document.createElement('div');
+    share.className = "share-bar";
+    const url = `https://www.youtube.com/watch?v=${video.id}`;
+    share.innerHTML = `
+      <button class="share-btn" title="Share on Twitter" onclick="event.stopPropagation();window.open('https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}','_blank')">🐦</button>
+      <button class="share-btn" title="Share on Facebook" onclick="event.stopPropagation();window.open('https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}','_blank')">📘</button>
+      <button class="share-btn" title="Share on WhatsApp" onclick="event.stopPropagation();window.open('https://api.whatsapp.com/send?text=${encodeURIComponent(url)}','_blank')">🟢</button>
+      <button class="share-btn" title="Share on Reddit" onclick="event.stopPropagation();window.open('https://reddit.com/submit?url=${encodeURIComponent(url)}','_blank')">👽</button>
+      <button class="share-btn" title="Copy Link" onclick="event.stopPropagation();navigator.clipboard.writeText('${url}');this.textContent='✅';setTimeout(()=>{this.textContent='🔗'},2000)">🔗</button>
+    `;
+    card.appendChild(share);
+
+    gallery.appendChild(card);
+  });
+}
+
+// --- Modal (Lightbox)
+function openModal(video) {
+  document.getElementById('modalBg').style.display = 'flex';
+  document.getElementById('modalIframe').src = `https://www.youtube.com/embed/${video.id}?autoplay=1`;
+  document.getElementById('modalTitle').textContent = video.title;
+}
+function closeModal() {
+  document.getElementById('modalBg').style.display = 'none';
+  document.getElementById('modalIframe').src = "";
+}
+document.getElementById('modalBg').onclick = (e) => { if (e.target.id === 'modalBg') closeModal(); };
+document.getElementById('modalCloseBtn').onclick = closeModal;
+window.addEventListener('keydown', (e) => { if (e.key === "Escape") closeModal(); });
+
+// --- Load More Button
+document.getElementById('loadMoreBtn').onclick = loadMoreVideos;
+
+// --- Startup
+fetchChannelInfo();
+loadMoreVideos();
+document.getElementById('loadMoreBtn').style.display = 'block';
+</script>
+</body>
+</html>
