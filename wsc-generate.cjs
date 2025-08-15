@@ -1,1 +1,0 @@
-// Content of the file wsc-generate.cjs
